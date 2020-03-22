@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{%block title %} {{produit.nom}} {% endblock %}
+
+{% block body %}
+
+    <br/>
+
+    {% if produit.image is not null %}
+        <img src="{{ asset('uploads/' ~ produit.image) }}">
+    {% endif %}
+
+    <br/>
+    <br/>
+
+    <h1>{{produit.nom}}</h1>
+    <p style="font-size: 17px">
+        {{'produit.quantite01' |trans}} : <strong> {{produit.qte}} </strong>
+    </p>
+    <p style="font-size: 17px"> 
+        {{'produit.prix' |trans}} : <strong> {{produit.prix}} € </strong>
+    </p>
+    
+    <br/>
+
+    <div style="background-color: darkgrey; height: 3px;"></div>
+
+    <br/>
+
+    <h2 style="display:flex; justify-content:center; text-decoration: underline; font-family: Tahoma;">
+        Ajouter au panier
+    </h2>
+
+    <br/>
+    <div style="font-family: Tahoma">
+        {{ form(form) }}
+    </div>
+
+    <button  style="background-color:red ; border-radius:5px; height: 38px; font-family: Tahoma " onmouseover="this.style.background='brown';this.style.color='white';" onmouseout="this.style.background='red';this.style.color='white';">
+        <a href="{{ path('delete_produit', {'id': produit.id}) }}" style="color:white; text-decoration:none;">
+            {{'produit.delete02' |trans}} 
+        </a>
+    </button>
+
+    <br/>
+    <br/>
+    <br/>
+
+{% endblock %}
